@@ -12,7 +12,7 @@ import net.idrok.shifoxona.repository.BinoRepository;
 
 @Service
 public class BinoService {
-   
+
     BinoRepository binoRepository;
     
     public BinoService(BinoRepository binoRepository){
