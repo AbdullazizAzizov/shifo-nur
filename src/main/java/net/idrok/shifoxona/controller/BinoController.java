@@ -3,6 +3,10 @@ package net.idrok.shifoxona.controller;
 import java.net.URI;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,9 +40,33 @@ public class BinoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Bino>> getAll(@RequestParam(value = "key", required = false) String key, Pageable pageable){
-        if(key == null) key = "";
-        return ResponseEntity.ok(binoService.getAll(key, pageable));
+    public ResponseEntity<Page<Bino>> getAll(@RequestParam(value = "key", required = false) String key, Pageable pageable,
+                                             HttpServletRequest request,
+                                             HttpServletResponse response,
+                                             @RequestHeader(value = "ism", required = false) String ism 
+                                             ){
+        Iterator<String> it = request.getHeaderNames().asIterator();
+        while( it.hasNext()){
+            String k = it.next();
+            System.out.println(k + ": " + request.getHeader(k));
+        }
+        response.setHeader("familya", "Jabborov");
+
+
+        Cookie [] mas = request.getCookies();
+        for(Cookie c: mas) {
+            
+        }
+
+        //yozish
+        Cookie cookie = new Cookie("ism", "AxadQayum");
+        cookie.setMaxAge(10*1000);
+        response.addCookie(cookie);
+        return BinoService.getAll(key);
+
+
+ //        if(key == null) key = "";
+//        return ResponseEntity.ok(binoService.getAll(key, pageable));
     }
 
     @PostMapping
