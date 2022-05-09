@@ -1,6 +1,7 @@
 package net.idrok.shifoxona.controller;
 
 import java.net.URI;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -40,33 +41,33 @@ public class BinoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Bino>> getAll(@RequestParam(value = "key", required = false) String key, Pageable pageable,
+    public ResponseEntity<Page<Bino>>getAll(@RequestParam(value = "key", required = false) String key, Pageable pageable,
                                              HttpServletRequest request,
                                              HttpServletResponse response,
                                              @RequestHeader(value = "ism", required = false) String ism 
                                              ){
-        Iterator<String> it = request.getHeaderNames().asIterator();
-        while( it.hasNext()){
-            String k = it.next();
-            System.out.println(k + ": " + request.getHeader(k));
-        }
-        response.setHeader("familya", "Jabborov");
+//        Iterator<String> it = request.getHeaderNames().asIterator();
+//        while( it.hasNext()){
+//            String k = it.next();
+//            System.out.println(k + ": " + request.getHeader(k));
+//        }
+//        response.setHeader("familya", "Jabborov");
 
 
-        Cookie [] mas = request.getCookies();
-        for(Cookie c: mas) {
-            
-        }
+//        Cookie [] mas = request.getCookies();
+//        for(Cookie c: mas) {
+//
+//        }
 
         //yozish
-        Cookie cookie = new Cookie("ism", "AxadQayum");
-        cookie.setMaxAge(10*1000);
-        response.addCookie(cookie);
-        return BinoService.getAll(key);
+//        Cookie cookie = new Cookie("ism", "AxadQayum");
+//        cookie.setMaxAge(10*1000);
+//        response.addCookie(cookie);
+//        return BinoService.getAll(key);
 
 
- //        if(key == null) key = "";
-//        return ResponseEntity.ok(binoService.getAll(key, pageable));
+         if(key == null) key = "";
+        return ResponseEntity.ok(binoService.getAll(key, pageable));
     }
 
     @PostMapping
