@@ -1,7 +1,7 @@
 package net.idrok.shifoxona.controller;
 
 import java.util.List;
-
+// Bu Test Comment
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
